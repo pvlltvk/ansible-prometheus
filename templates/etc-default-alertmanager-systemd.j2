@@ -1,0 +1,3 @@
+OPTIONS="-config.file={{ prometheus_config_path }}/alertmanager.yml \
+  -storage.path={{ prometheus_alertmanager_db_path }} \
+  {{ prometheus_alertmanager_opts | default() }}"

@@ -1,0 +1,15 @@
+[Unit]
+Description=Prometheus Server
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/default/prometheus
+ExecStart={{ prometheus_daemon_dir }}/prometheus $OPTIONS
+KillMode=process
+User={{ prometheus_user }}
+Group={{ prometheus_group }}
+Restart=on-failure
+ExecReload=/bin/kill -SIGHUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

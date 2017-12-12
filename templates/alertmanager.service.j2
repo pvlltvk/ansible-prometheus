@@ -1,0 +1,15 @@
+[Unit]
+Description=Prometheus Alertmanager
+Documentation=https://prometheus.io/docs/alerting/overview/
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/default/alertmanager
+ExecStart={{ prometheus_alertmanager_daemon_dir }}/alertmanager $OPTIONS
+KillMode=process
+User={{ prometheus_user }}
+Group={{ prometheus_group }}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
